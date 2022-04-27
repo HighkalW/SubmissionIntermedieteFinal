@@ -1,5 +1,6 @@
 package com.example.submissionintermedieteakhir.ui.splash
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,10 +13,12 @@ import android.widget.TextView
 import com.example.submissionintermedieteakhir.R
 import com.example.submissionintermedieteakhir.ui.main.MainActivity
 
+@Suppress("DEPRECATION")
+@SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {
 
     private lateinit var topAnimation: Animation
-    private lateinit var buttomAnimation: Animation
+    private lateinit var buttonAnimation: Animation
     private lateinit var imageGithub: ImageView
     private lateinit var imageLogo : ImageView
     private lateinit var slogan : TextView
@@ -37,14 +40,14 @@ class SplashScreen : AppCompatActivity() {
         }, 3000)
 
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.top_animation)
-        buttomAnimation = AnimationUtils.loadAnimation(this, R.anim.buttom_animation)
+        buttonAnimation = AnimationUtils.loadAnimation(this, R.anim.button_animation)
 
         imageGithub = findViewById(R.id.github_icon)
         imageLogo = findViewById(R.id.github_icon_text)
         slogan = findViewById(R.id.slogan_text)
 
         imageGithub.startAnimation(topAnimation)
-        imageLogo.startAnimation(buttomAnimation)
-        slogan.startAnimation(buttomAnimation)
+        imageLogo.startAnimation(buttonAnimation)
+        slogan.startAnimation(buttonAnimation)
     }
 }
