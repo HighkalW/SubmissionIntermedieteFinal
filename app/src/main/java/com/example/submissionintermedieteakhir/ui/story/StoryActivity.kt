@@ -1,5 +1,4 @@
 package com.example.submissionintermedieteakhir.ui.story
-
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent

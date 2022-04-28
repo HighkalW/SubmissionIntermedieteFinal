@@ -38,7 +38,7 @@
     <string name="photo">photo</string>
     <string name="failure_ket">\"Failure : \"</string>
     <string name="img_type">image/*</string>
-    <string name="author">com.dzikril.submission1.ui.story</string>
+    <string name="author">com.example.submissionintermedieteakhir.ui.story</string>
     <string name="splash_screen">Splash Screen</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="retry">Retry</string>

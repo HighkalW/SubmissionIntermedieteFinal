@@ -1,6 +1,5 @@
 package com.example.submissionintermedieteakhir.ui.splash
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,8 +12,6 @@ import android.widget.TextView
 import com.example.submissionintermedieteakhir.R
 import com.example.submissionintermedieteakhir.ui.main.MainActivity
 
-@Suppress("DEPRECATION")
-@SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {
 
     private lateinit var topAnimation: Animation

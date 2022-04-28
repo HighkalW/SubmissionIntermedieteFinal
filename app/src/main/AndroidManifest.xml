@@ -13,6 +13,7 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
+
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
@@ -23,8 +24,6 @@
         </intent>
     </queries>
 
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -32,11 +31,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SubmissionIntermedieteAkhir">
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCqdbFEWGkHp3xvTJ2ghurydTBWn7htDK4" />
-
         <activity
             android:name=".ui.splash.SplashScreen"
             android:exported="true">
@@ -44,9 +38,13 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCqdbFEWGkHp3xvTJ2ghurydTBWn7htDK4" />
+
         <activity
             android:name=".ui.story.StoryActivity"
             android:exported="false" />
@@ -64,15 +62,16 @@
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true"/>
+            android:exported="true" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.submissionintermedieteakhir.ui.story"
             android:exported="false"
             android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/file_paths" />
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

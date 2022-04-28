@@ -49,7 +49,7 @@ class MainActivityTest {
     fun getStoriesSuccess() {
         val mockResponse = MockResponse()
             .setResponseCode(200)
-            .setBody(JsonConv.readStringFromFile("responses_success.json"))
+            .setBody(JsonConv.readStringFromFile("success_feedback.json"))
         mockWebServer.enqueue(mockResponse)
         Espresso.onView(withId(R.id.rv_story))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
