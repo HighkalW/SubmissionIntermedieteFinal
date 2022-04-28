@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:layout_marginTop="8dp"
+            android:textColor="@color/light_variants"
             app:layout_constraintTop_toBottomOf="@id/img_avatar"
             app:layout_constraintEnd_toEndOf="@id/img_avatar"
             app:layout_constraintStart_toStartOf="@+id/img_avatar"
@@ -45,6 +46,7 @@
             android:maxLines="3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:textColorHint="@color/light_variants"
             app:layout_constraintTop_toBottomOf="@+id/tv_username"
             tools:text="@string/description" />
     </androidx.constraintlayout.widget.ConstraintLayout>

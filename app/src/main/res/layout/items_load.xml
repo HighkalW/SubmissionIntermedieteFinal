@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textAlignment="center"
+        android:textColorHint="@color/light_variants"
         android:textColor="?android:textColorPrimary"
         tools:text="@string/timeout" />
 
