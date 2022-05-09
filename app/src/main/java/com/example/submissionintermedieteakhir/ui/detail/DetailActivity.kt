@@ -16,14 +16,15 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        title = getString(R.string.tittle_detail_activity)
-
         val story = intent.getParcelableExtra<Story>(EXTRA_STORY)
         binding.apply {
             tvDetailUsername.text = story?.name
             tvCreatedAt.setLocalDateFormat(story?.createdAt.toString())
             tvDetailDescription.text = story?.description
         }
+        title = getString(R.string.tittle_detail_activity)
+
+
         Glide.with(this)
             .load(story?.photoUrl)
             .placeholder(R.drawable.image_loading)

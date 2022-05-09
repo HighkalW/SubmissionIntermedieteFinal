@@ -29,13 +29,6 @@ class SplashScreen : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
-        Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 3000)
-
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.top_animation)
         buttonAnimation = AnimationUtils.loadAnimation(this, R.anim.button_animation)
 
@@ -46,5 +39,10 @@ class SplashScreen : AppCompatActivity() {
         imageGithub.startAnimation(topAnimation)
         imageLogo.startAnimation(buttonAnimation)
         slogan.startAnimation(buttonAnimation)
+        Handler().postDelayed({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }, 3000)
     }
 }

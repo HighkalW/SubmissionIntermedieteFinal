@@ -68,14 +68,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.items_menu, menu)
-
-        return true
+    private fun setupAction() {
+        binding.fabAddStory.setOnClickListener {
+            val intent = Intent(this, StoryActivity::class.java)
+            intent.putExtra(StoryActivity.EXTRA_TOKEN, token)
+            startActivity(intent)
+        }
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.logout -> {
@@ -96,11 +95,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupAction() {
-        binding.fabAddStory.setOnClickListener {
-            val intent = Intent(this, StoryActivity::class.java)
-            intent.putExtra(StoryActivity.EXTRA_TOKEN, token)
-            startActivity(intent)
-        }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.items_menu, menu)
+
+        return true
     }
+
+
+
+
 }

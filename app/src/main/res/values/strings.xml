@@ -6,29 +6,6 @@
     <string name="add_story" translatable="false">Add Story</string>
     <string name="logout" translatable="false">Logout</string>
     <string name="setting_language" translatable="false">Language</string>
-    <string name="created_at" translatable="false">Created At</string>
-    <string name="login_image" translatable="false">Login Image</string>
-    <string name="login" translatable="false"> Login</string>
-    <string name="email" translatable="false">Email</string>
-    <string name="login_error" translatable="false">Login failed, please try again!</string>
-    <string name="permission_denied" translatable="false">Can\'t get permission</string>
-    <string name="signup_error" translatable="false">Signup failed, please try again!</string>
-    <string name="input_image" translatable="false">Please upload your image first!</string>
-    <string name="choose_picture" translatable="false">Choose a Picture to upload</string>
-    <string name="email_hint" translatable="false">Text your email</string>
-    <string name="invalid_email" translatable="false">Format email is invalid!</string>
-    <string name="min_length_char" translatable="false">Minimum length %1$d character</string>
-    <string name="password" translatable="false">Password</string>
-    <string name="password_hint" translatable="false">Text Your Password</string>
-    <string name="message_validation">Enter your %1$s</string>
-    <string name="keterangan_log">Don\'t have any account ?</string>
-    <string name="where_the_world_builds_software" translatable="false">Where the World Builds Software</string>
-    <string name="signup"> Signup</string>
-    <string name="name">Name</string>
-    <string name="name_hint">Text Your Name</string>
-    <string name="signup_keterangan">Have Already Account ?</string>
-    <string name="camera">Camera</string>
-    <string name="gallery">Gallery</string>
     <string name="description_hint">Text Description</string>
     <string name="upload">Upload</string>
     <string name="tittle_detail_activity">Detail Story</string>
@@ -44,6 +21,30 @@
     <string name="retry">Retry</string>
     <string name="timeout">Timeout</string>
     <string name="my_loc">My Location</string>
+    <string name="created_at" translatable="false">Created At</string>
+    <string name="login_image" translatable="false">Login Image</string>
+    <string name="login" translatable="false"> Login</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="where_the_world_builds_software" translatable="false">Where the World Builds Software</string>
+    <string name="signup"> Signup</string>
+    <string name="name">Name</string>
+    <string name="name_hint">Text Your Name</string>
+    <string name="signup_keterangan">Have Already Account ?</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="login_error" translatable="false">Login failed, please try again!</string>
+    <string name="permission_denied" translatable="false">Can\'t get permission</string>
+    <string name="signup_error" translatable="false">Signup failed, please try again!</string>
+    <string name="input_image" translatable="false">Please upload your image first!</string>
+    <string name="choose_picture" translatable="false">Choose a Picture to upload</string>
+    <string name="email_hint" translatable="false">Text your email</string>
+    <string name="invalid_email" translatable="false">Format email is invalid!</string>
+    <string name="min_length_char" translatable="false">Minimum length %1$d character</string>
+    <string name="password" translatable="false">Password</string>
+    <string name="password_hint" translatable="false">Text Your Password</string>
+    <string name="message_validation">Enter your %1$s</string>
+    <string name="keterangan_log">Don\'t have any account ?</string>
+
     <string name="loc_not_found">Location Not Found</string>
     <string name="share_location">Share Location</string>
     <string name="maps_location">Maps Location</string>

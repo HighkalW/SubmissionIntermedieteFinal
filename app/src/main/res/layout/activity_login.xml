@@ -18,11 +18,11 @@
             android:layout_height="0dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:contentDescription="@string/login_image"
             app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal2"
+            android:contentDescription="@string/login_image"
             app:srcCompat="@drawable/image_welcome" />
 
         <TextView
@@ -33,14 +33,15 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:text="@string/login"
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
+            app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/login"
+            />
 
         <TextView
             android:id="@+id/tv_login_email"
@@ -49,9 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/email"
-            app:layout_constraintEnd_toEndOf="@+id/tv_login"
             app:layout_constraintStart_toStartOf="@+id/tv_login"
-            app:layout_constraintTop_toBottomOf="@+id/tv_login" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_login"
+            app:layout_constraintEnd_toEndOf="@+id/tv_login"
+             />
 
         <com.example.submissionintermedieteakhir.customview.EmailEdit
             android:id="@+id/edt_login_email"
@@ -59,21 +61,23 @@
             android:hint="@string/email_hint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/tv_login"
             app:layout_constraintStart_toStartOf="@+id/tv_login"
-            app:layout_constraintTop_toBottomOf="@+id/tv_login_email" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_login_email"
+            android:layout_marginTop="8dp"
+             />
 
         <TextView
             android:id="@+id/tv_password"
             android:alpha="0"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@string/password"
-            app:layout_constraintEnd_toEndOf="@+id/tv_login"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="@+id/tv_login"
-            app:layout_constraintTop_toBottomOf="@+id/edt_login_email" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_login"
+            app:layout_constraintTop_toBottomOf="@+id/edt_login_email"
+             />
 
         <com.example.submissionintermedieteakhir.customview.PasswordEdit
             android:id="@+id/edt_password"
@@ -82,10 +86,11 @@
             android:hint="@string/password_hint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/tv_login"
+            app:layout_constraintTop_toBottomOf="@+id/tv_password"
             app:layout_constraintStart_toStartOf="@+id/tv_login"
-            app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+            android:layout_marginTop="8dp"
+             />
 
         <Button
             android:id="@+id/btn_login"

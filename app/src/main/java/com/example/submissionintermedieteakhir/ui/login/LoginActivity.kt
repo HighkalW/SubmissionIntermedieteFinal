@@ -33,25 +33,18 @@ class LoginActivity : AppCompatActivity() {
         playAnimation()
     }
 
-    private fun playAnimation() {
-        ObjectAnimator.ofFloat(binding.imgLoginView, View.TRANSLATION_X, -30f, 30f).apply {
-            duration = 5000
-            repeatCount = ObjectAnimator.INFINITE
-            repeatMode = ObjectAnimator.REVERSE
-        }.start()
 
-        val title = ObjectAnimator.ofFloat(binding.tvLogin, View.ALPHA, 1f).setDuration(500)
-        val tvEmail = ObjectAnimator.ofFloat(binding.tvLoginEmail, View.ALPHA, 1f).setDuration(500)
-        val edtEmail = ObjectAnimator.ofFloat(binding.edtLoginEmail, View.ALPHA, 1f).setDuration(500)
-        val tvPassword = ObjectAnimator.ofFloat(binding.tvPassword, View.ALPHA, 1f).setDuration(500)
-        val edtPassword = ObjectAnimator.ofFloat(binding.edtPassword, View.ALPHA, 1f).setDuration(500)
-        val btnLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(500)
-        val signup = ObjectAnimator.ofFloat(binding.tvNewSignup, View.ALPHA, 1f).setDuration(500)
-        val message = ObjectAnimator.ofFloat(binding.tvKet, View.ALPHA, 1f).setDuration(500)
+    private fun showLoading(isLoading: Boolean) {
+        binding.apply {
+            edtLoginEmail.isEnabled = !isLoading
+            edtPassword.isEnabled = !isLoading
+            btnLogin.isEnabled = !isLoading
 
-        AnimatorSet().apply {
-            playSequentially(title, tvEmail, edtEmail, tvPassword, edtPassword, btnLogin, message, signup)
-            start()
+            if (isLoading) {
+                viewProgressbar.animateVisibility(true)
+            } else {
+                viewProgressbar.animateVisibility(false)
+            }
         }
     }
 
@@ -96,21 +89,17 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+    private fun setupViewModel() {
+        val factory: UserVMF = UserVMF.getInstance(this)
+        loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
 
-    private fun showLoading(isLoading: Boolean) {
-        binding.apply {
-            edtLoginEmail.isEnabled = !isLoading
-            edtPassword.isEnabled = !isLoading
-            btnLogin.isEnabled = !isLoading
-
-            if (isLoading) {
-                viewProgressbar.animateVisibility(true)
-            } else {
-                viewProgressbar.animateVisibility(false)
+        loginViewModel.getToken().observe(this){ token ->
+            if (token.isNotEmpty()){
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
         }
     }
-
     private fun setupAction() {
         binding.tvNewSignup.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
@@ -121,16 +110,25 @@ class LoginActivity : AppCompatActivity() {
             login()
         }
     }
+    private fun playAnimation() {
+        ObjectAnimator.ofFloat(binding.imgLoginView, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 5000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
 
-    private fun setupViewModel() {
-        val factory: UserVMF = UserVMF.getInstance(this)
-        loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
+        val title = ObjectAnimator.ofFloat(binding.tvLogin, View.ALPHA, 1f).setDuration(500)
+        val tvEmail = ObjectAnimator.ofFloat(binding.tvLoginEmail, View.ALPHA, 1f).setDuration(500)
+        val edtEmail = ObjectAnimator.ofFloat(binding.edtLoginEmail, View.ALPHA, 1f).setDuration(500)
+        val tvPassword = ObjectAnimator.ofFloat(binding.tvPassword, View.ALPHA, 1f).setDuration(500)
+        val edtPassword = ObjectAnimator.ofFloat(binding.edtPassword, View.ALPHA, 1f).setDuration(500)
+        val btnLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(500)
+        val signup = ObjectAnimator.ofFloat(binding.tvNewSignup, View.ALPHA, 1f).setDuration(500)
+        val message = ObjectAnimator.ofFloat(binding.tvKet, View.ALPHA, 1f).setDuration(500)
 
-        loginViewModel.getToken().observe(this){ token ->
-            if (token.isNotEmpty()){
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }
+        AnimatorSet().apply {
+            playSequentially(title, tvEmail, edtEmail, tvPassword, edtPassword, btnLogin, message, signup)
+            start()
         }
     }
 }

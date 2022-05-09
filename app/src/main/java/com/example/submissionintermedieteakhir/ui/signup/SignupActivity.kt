@@ -30,6 +30,22 @@ class SignupActivity : AppCompatActivity() {
         playAnimation()
     }
 
+
+
+    private fun setupViewModel() {
+        val factory: UserVMF = UserVMF.getInstance(this)
+        signupViewModel = ViewModelProvider(this, factory)[SignupViewModel::class.java]
+    }
+
+    private fun setupAction() {
+        binding.btnSignup.setOnClickListener {
+            signUp()
+        }
+
+        binding.tvLogin.setOnClickListener{
+            finish()
+        }
+    }
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.imgSignupView, View.TRANSLATION_X, -30f, 30f).apply {
             duration = 5000
@@ -53,37 +69,6 @@ class SignupActivity : AppCompatActivity() {
             start()
         }
     }
-
-    private fun setupViewModel() {
-        val factory: UserVMF = UserVMF.getInstance(this)
-        signupViewModel = ViewModelProvider(this, factory)[SignupViewModel::class.java]
-    }
-
-    private fun setupAction() {
-        binding.btnSignup.setOnClickListener {
-            signUp()
-        }
-
-        binding.tvLogin.setOnClickListener{
-            finish()
-        }
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        binding.apply {
-            edtSignupEmail.isEnabled = !isLoading
-            edtPassword.isEnabled = !isLoading
-            edtSignupName.isEnabled = !isLoading
-            btnSignup.isEnabled = !isLoading
-
-            if (isLoading) {
-                viewProgressbar.animateVisibility(true)
-            } else {
-                viewProgressbar.animateVisibility(false)
-            }
-        }
-    }
-
     private fun signUp(){
         val name = binding.edtSignupName.text.toString().trim()
         val email = binding.edtSignupEmail.text.toString().trim()
@@ -136,4 +121,20 @@ class SignupActivity : AppCompatActivity() {
             }
         }
     }
+    private fun showLoading(isLoading: Boolean) {
+        binding.apply {
+            edtSignupEmail.isEnabled = !isLoading
+            edtPassword.isEnabled = !isLoading
+            edtSignupName.isEnabled = !isLoading
+            btnSignup.isEnabled = !isLoading
+
+            if (isLoading) {
+                viewProgressbar.animateVisibility(true)
+            } else {
+                viewProgressbar.animateVisibility(false)
+            }
+        }
+    }
+
+
 }

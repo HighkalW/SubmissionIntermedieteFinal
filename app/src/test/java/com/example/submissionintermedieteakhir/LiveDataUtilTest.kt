@@ -9,15 +9,15 @@ import java.util.concurrent.TimeoutException
 
 @VisibleForTesting(otherwise = VisibleForTesting.NONE)
 fun <T> LiveData<T>.getOrAwaitValue(
-    time: Long = 2,
+    time: Long = 3,
     timeUnit: TimeUnit = TimeUnit.SECONDS,
     afterObserve: () -> Unit = {}
 ): T {
-    var data: T? = null
-    val latch = CountDownLatch(1)
+    var tes: T? = null
+    val latch = CountDownLatch(2)
     val observer = object : Observer<T> {
-        override fun onChanged(o: T?) {
-            data = o
+        override fun onChanged(i: T?) {
+            tes = i
             latch.countDown()
             this@getOrAwaitValue.removeObserver(this)
         }
@@ -32,5 +32,5 @@ fun <T> LiveData<T>.getOrAwaitValue(
         this.removeObserver(observer)
     }
     @Suppress("UNCHECKED_CAST")
-    return data as T
+    return tes as T
 }

@@ -57,19 +57,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setupViewModel()
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-
-        mMap.uiSettings.isZoomControlsEnabled = true
-        mMap.uiSettings.isIndoorLevelPickerEnabled = true
-        mMap.uiSettings.isCompassEnabled = true
-        mMap.uiSettings.isMapToolbarEnabled = true
-
-        setupMarker()
-        setMapStyle()
-        getMyLocation()
-    }
-
     private fun setMapStyle() {
         try {
             val success =
@@ -87,6 +74,26 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         return true
     }
 
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+
+        mMap.uiSettings.isZoomControlsEnabled = true
+        mMap.uiSettings.isIndoorLevelPickerEnabled = true
+        mMap.uiSettings.isCompassEnabled = true
+        mMap.uiSettings.isMapToolbarEnabled = true
+
+        setupMarker()
+        setMapStyle()
+        getMyLocation()
+    }
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                getMyLocation()
+            }
+        }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.normal_type -> {
@@ -110,16 +117,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                getMyLocation()
-            }
-        }
-
     private fun getMyLocation() {
         if (ContextCompat.checkSelfPermission(
                 this.applicationContext,
@@ -156,6 +153,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startLocation, 5f))
     }
 
+
+
+    private fun setupViewModel() {
+        val factory: StoryVMF = StoryVMF.getInstance(this)
+        mapsViewModel = ViewModelProvider(this, factory)[MapsViewModel::class.java]
+    }
     private fun setupMarker() {
         mapsViewModel.getStories(token).observe(this){result ->
             if (result != null){
@@ -191,12 +194,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-
-    private fun setupViewModel() {
-        val factory: StoryVMF = StoryVMF.getInstance(this)
-        mapsViewModel = ViewModelProvider(this, factory)[MapsViewModel::class.java]
-    }
-
     companion object {
         const val EXTRA_TOKEN = "extra_token"
     }

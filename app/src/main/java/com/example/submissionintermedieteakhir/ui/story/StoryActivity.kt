@@ -73,13 +73,7 @@ class StoryActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupViewModel() {
-        val factory: StoryVMF = StoryVMF.getInstance(this)
-        storyViewModel = ViewModelProvider(
-            this,
-            factory
-        )[StoryViewModel::class.java]
-    }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -98,11 +92,26 @@ class StoryActivity : AppCompatActivity() {
             }
         }
     }
-
+    private fun setupViewModel() {
+        val factory: StoryVMF = StoryVMF.getInstance(this)
+        storyViewModel = ViewModelProvider(
+            this,
+            factory
+        )[StoryViewModel::class.java]
+    }
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
+
+
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = getString(R.string.img_type)
+        val chooser = Intent.createChooser(intent, resources.getString(R.string.choose_picture))
+        launcherIntentGallery.launch(chooser)
+    }
     private fun uploadImage() {
         if (getFile != null) {
             val description = binding.edtDesc.text.toString().trim()
@@ -155,26 +164,6 @@ class StoryActivity : AppCompatActivity() {
                 .show()
         }
     }
-
-    private fun startGallery() {
-        val intent = Intent()
-        intent.action = Intent.ACTION_GET_CONTENT
-        intent.type = getString(R.string.img_type)
-        val chooser = Intent.createChooser(intent, resources.getString(R.string.choose_picture))
-        launcherIntentGallery.launch(chooser)
-    }
-
-    private val launcherIntentGallery = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val selectedImg: Uri = result.data?.data as Uri
-            val myFile = MediaUtil.uriToFile(selectedImg, this@StoryActivity)
-            getFile = myFile
-            binding.previewImageView.setImageURI(selectedImg)
-        }
-    }
-
     private fun showLoading(isLoading: Boolean) {
         binding.apply {
             btnCamera.isEnabled = !isLoading
@@ -190,15 +179,14 @@ class StoryActivity : AppCompatActivity() {
             }
         }
     }
-
-    private val launcherIntentCamera = registerForActivityResult(
+    private val launcherIntentGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == RESULT_OK) {
-            val myFile = File(currentPhotoPath)
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val selectedImg: Uri = result.data?.data as Uri
+            val myFile = MediaUtil.uriToFile(selectedImg, this@StoryActivity)
             getFile = myFile
-            val result = BitmapFactory.decodeFile(myFile.path)
-            binding.previewImageView.setImageBitmap(result)
+            binding.previewImageView.setImageURI(selectedImg)
         }
     }
 
@@ -218,15 +206,16 @@ class StoryActivity : AppCompatActivity() {
         }
     }
 
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                getMyLocation()
-            }
+    private val launcherIntentCamera = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == RESULT_OK) {
+            val myFile = File(currentPhotoPath)
+            getFile = myFile
+            val result = BitmapFactory.decodeFile(myFile.path)
+            binding.previewImageView.setImageBitmap(result)
         }
-
+    }
     private fun getMyLocation() {
         if (ContextCompat.checkSelfPermission(
                 this.applicationContext,
@@ -249,6 +238,16 @@ class StoryActivity : AppCompatActivity() {
             requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
     }
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                getMyLocation()
+            }
+        }
+
+
 
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
