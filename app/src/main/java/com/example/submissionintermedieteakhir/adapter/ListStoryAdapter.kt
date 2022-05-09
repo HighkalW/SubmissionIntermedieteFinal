@@ -16,6 +16,15 @@ import com.example.submissionintermedieteakhir.ui.detail.DetailActivity
 class ListStoryAdapter :
     PagingDataAdapter<Story, ListStoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
+
+
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val data = getItem(position)
+        if (data != null) {
+            holder.bind(holder.itemView.context, data)
+        }
+    }
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyViewHolder {
         val binding =
             ItemsStoryBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -41,14 +50,6 @@ class ListStoryAdapter :
                 .into(binding.imgAvatar)
         }
     }
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val data = getItem(position)
-        if (data != null) {
-            holder.bind(holder.itemView.context, data)
-        }
-    }
-
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Story>() {
             override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {

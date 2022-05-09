@@ -15,17 +15,7 @@ import com.example.submissionintermedieteakhir.R
 open class EditText : AppCompatEditText, View.OnTouchListener{
     private lateinit var clearButtonImage: Drawable
 
-    constructor(context: Context) : super(context) {
-        init()
-    }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        init()
-    }
 
     private fun init() {
         clearButtonImage = ContextCompat.getDrawable(context, R.drawable.ic_baseline_close_24) as Drawable
@@ -43,7 +33,17 @@ open class EditText : AppCompatEditText, View.OnTouchListener{
             }
         })
     }
+    constructor(context: Context) : super(context) {
+        init()
+    }
 
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init()
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init()
+    }
     private fun showClearButton() {
         setButtonDrawables(endOfTheText = clearButtonImage)
     }
@@ -52,19 +52,7 @@ open class EditText : AppCompatEditText, View.OnTouchListener{
         setButtonDrawables()
     }
 
-    private fun setButtonDrawables(
-        startOfTheText: Drawable? = null,
-        topOfTheText: Drawable? = null,
-        endOfTheText: Drawable? = null,
-        bottomOfTheText: Drawable? = null
-    ){
-        setCompoundDrawablesWithIntrinsicBounds(
-            startOfTheText,
-            topOfTheText,
-            endOfTheText,
-            bottomOfTheText
-        )
-    }
+
 
     override fun onTouch(v: View?, event: MotionEvent): Boolean {
         if (compoundDrawables[2] != null) {
@@ -104,5 +92,18 @@ open class EditText : AppCompatEditText, View.OnTouchListener{
             }
         }
         return false
+    }
+    private fun setButtonDrawables(
+        startOfTheText: Drawable? = null,
+        topOfTheText: Drawable? = null,
+        endOfTheText: Drawable? = null,
+        bottomOfTheText: Drawable? = null
+    ){
+        setCompoundDrawablesWithIntrinsicBounds(
+            startOfTheText,
+            topOfTheText,
+            endOfTheText,
+            bottomOfTheText
+        )
     }
 }

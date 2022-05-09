@@ -14,9 +14,6 @@ class LoadingStateAdapter (private val retry: () -> Unit) : LoadStateAdapter<Loa
         val binding = ItemsLoadBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return LoadingStateViewHolder(binding, retry)
     }
-    override fun onBindViewHolder(holder: LoadingStateViewHolder, loadState: LoadState) {
-        holder.bind(loadState)
-    }
     class LoadingStateViewHolder(private val binding: ItemsLoadBinding, retry: () -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         init {
@@ -31,4 +28,8 @@ class LoadingStateAdapter (private val retry: () -> Unit) : LoadStateAdapter<Loa
             binding.errorMessage.isVisible = loadState is LoadState.Error
         }
     }
+    override fun onBindViewHolder(holder: LoadingStateViewHolder, loadState: LoadState) {
+        holder.bind(loadState)
+    }
+
 }

@@ -17,9 +17,6 @@ abstract class StoryDatabase : RoomDatabase() {
     abstract fun remoteKeyDao(): RemoteKeysDao
 
     companion object {
-        @Volatile
-        private var INSTANCE: StoryDatabase? = null
-
         @JvmStatic
         fun getDatabase(context: Context): StoryDatabase {
             return INSTANCE ?: synchronized(this) {
@@ -32,5 +29,7 @@ abstract class StoryDatabase : RoomDatabase() {
                     .also { INSTANCE = it }
             }
         }
+        @Volatile
+        private var INSTANCE: StoryDatabase? = null
     }
 }

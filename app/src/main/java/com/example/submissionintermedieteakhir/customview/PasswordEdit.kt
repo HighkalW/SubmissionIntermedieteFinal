@@ -7,17 +7,6 @@ import android.util.AttributeSet
 import com.example.submissionintermedieteakhir.R
 
 class PasswordEdit: EditText {
-    constructor(context: Context) : super(context) {
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        init()
-    }
 
     private fun init() {
         setOnTouchListener(this)
@@ -34,4 +23,16 @@ class PasswordEdit: EditText {
             }
         })
     }
+    constructor(context: Context) : super(context) {
+        init()
+    }
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init()
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init()
+    }
+
 }

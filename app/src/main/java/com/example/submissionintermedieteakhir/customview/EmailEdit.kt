@@ -10,22 +10,6 @@ import com.example.submissionintermedieteakhir.R
 
 class EmailEdit : EditText {
 
-    constructor(context: Context) : super(context) {
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        init()
-    }
-
-    private fun isValidEmail(email: String): Boolean {
-        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
     private fun init() {
         setOnTouchListener(this)
 
@@ -40,5 +24,22 @@ class EmailEdit : EditText {
             override fun afterTextChanged(s: Editable) {
             }
         })
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+
+    constructor(context: Context) : super(context) {
+        init()
+    }
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init()
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init()
     }
 }
