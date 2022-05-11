@@ -46,13 +46,6 @@ class MainActivity : AppCompatActivity() {
             this,
             factory
         )[MainViewModel::class.java]
-
-        mainViewModel.isLogin().observe(this){
-            if (!it){
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-            }
-        }
         mainViewModel.getToken().observe(this){ token ->
             this.token = token
             if (token.isNotEmpty()){
@@ -67,6 +60,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        mainViewModel.isLogin().observe(this){
+            if (!it){
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+        }
+
     }
     private fun setupAction() {
         binding.fabAddStory.setOnClickListener {
@@ -74,6 +75,12 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(StoryActivity.EXTRA_TOKEN, token)
             startActivity(intent)
         }
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.items_menu, menu)
+
+        return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -94,15 +101,4 @@ class MainActivity : AppCompatActivity() {
             else -> true
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.items_menu, menu)
-
-        return true
-    }
-
-
-
-
 }

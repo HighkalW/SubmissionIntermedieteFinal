@@ -15,10 +15,6 @@ import com.example.submissionintermedieteakhir.ui.detail.DetailActivity
 
 class ListStoryAdapter :
     PagingDataAdapter<Story, ListStoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
-
-
-
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = getItem(position)
         if (data != null) {
