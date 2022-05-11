@@ -17,6 +17,9 @@ import com.example.submissionintermedieteakhir.utils.animateVisibility
 class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
     private lateinit var signupViewModel: SignupViewModel
+    val name = binding.edtSignupName.text.toString().trim()
+    val email = binding.edtSignupEmail.text.toString().trim()
+    val password = binding.edtPassword.text.toString().trim()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,14 +32,6 @@ class SignupActivity : AppCompatActivity() {
         setupViewModel()
         playAnimation()
     }
-
-
-
-    private fun setupViewModel() {
-        val factory: UserVMF = UserVMF.getInstance(this)
-        signupViewModel = ViewModelProvider(this, factory)[SignupViewModel::class.java]
-    }
-
     private fun setupAction() {
         binding.btnSignup.setOnClickListener {
             signUp()
@@ -45,6 +40,10 @@ class SignupActivity : AppCompatActivity() {
         binding.tvLogin.setOnClickListener{
             finish()
         }
+    }
+    private fun setupViewModel() {
+        val fac: UserVMF = UserVMF.getInstance(this)
+        signupViewModel = ViewModelProvider(this, fac)[SignupViewModel::class.java]
     }
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.imgSignupView, View.TRANSLATION_X, -30f, 30f).apply {
@@ -70,9 +69,7 @@ class SignupActivity : AppCompatActivity() {
         }
     }
     private fun signUp(){
-        val name = binding.edtSignupName.text.toString().trim()
-        val email = binding.edtSignupEmail.text.toString().trim()
-        val password = binding.edtPassword.text.toString().trim()
+
         when {
             name.isEmpty() -> {
                 binding.edtSignupName.error = resources.getString(R.string.message_validation, "name")
